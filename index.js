@@ -46,6 +46,8 @@ RedisTransport.prototype.write = function write (entry) {
   var self = this;
   var client = this._client;
 
+  entry.microtime = process.hrtime()[1];
+
   this.emit('log', entry);
 
   vasync.pipeline({
